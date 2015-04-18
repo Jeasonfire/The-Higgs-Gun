@@ -3,8 +3,8 @@ The Higgs Gun
 
 Table of Contents
 -----------------
-* (General)[#general]
-* (Mechanics)[#mechanics]
+* [General](#general)
+* [Mechanics](#mechanics)
 
 General
 -------
