@@ -3,19 +3,20 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	public Rigidbody body;
+	public CharacterController character;
 	public float moveSpeed;
-
+	public float gravity;
+	public float jumpForce;
+	
 	public Transform headTrans, bodyTrans;
-	public Vector2 mouseSensitivity;
 	private Vector2 rotation;
 
 	public const int NO_AMMO = 0, YELLOW = 1, GREEN = 2, BLUE = 3;
 	public float cooldown;
 	public float shootForce;
-	public int currentAmmo = NO_AMMO;
 	public GameObject yellowAmmo, greenAmmo, blueAmmo;
 	public GUIText equipText;
+	private int currentAmmo = NO_AMMO;
 	private bool canShootYellow = false, canShootGreen = false, canShootBlue = false;
 	private float firingCooldown;
 	private string originalEquipText;
@@ -72,8 +73,17 @@ public class PlayerController : MonoBehaviour {
 		move.z = Input.GetAxis ("Vertical");
 		move = transform.TransformDirection (move);
 		move = move.normalized * moveSpeed;
-		move.y = body.velocity.y;
-		body.velocity = move;
+		move.y = character.velocity.y;
+		if (!character.isGrounded) {
+			move.y -= gravity * Time.deltaTime;
+		} else {
+			if (Input.GetButton ("Jump")) {
+				move.y = jumpForce;
+			} else {
+				move.y = 0;
+			}
+		}
+		character.Move (move * Time.deltaTime);
 
 		// Mouselook
 		Vector2 mouse;
@@ -82,8 +92,8 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			mouse = new Vector2 (0, 0);
 		}
-		rotation.x += mouse.x * mouseSensitivity.x;
-		rotation.y -= mouse.y * mouseSensitivity.y;
+		rotation.x += mouse.x * GameController.mouseSensitivity.x;
+		rotation.y -= mouse.y * GameController.mouseSensitivity.y;
 		rotation.y = Mathf.Clamp (rotation.y, -90, 90);
 		bodyTrans.localEulerAngles = new Vector3 (bodyTrans.localEulerAngles.x, rotation.x, bodyTrans.localEulerAngles.z);
 		headTrans.localEulerAngles = new Vector3 (rotation.y, headTrans.localEulerAngles.y, headTrans.localEulerAngles.z);
