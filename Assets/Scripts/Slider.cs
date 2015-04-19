@@ -24,7 +24,7 @@ public class Slider : MonoBehaviour {
 		Ray mouse = mainCam.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hit;
 		if (Input.GetMouseButton (0) && sliderArea.Raycast(mouse, out hit, 100f)) {
-			float dist = Mathf.Abs((sliderArea.transform.position - mainCam.transform.position).magnitude);
+			float dist = Mathf.Abs((thumb.position - mainCam.transform.position).magnitude);
 			Vector3 msp = mainCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, dist));
 			float newX = Mathf.Clamp(msp.x, sliderArea.transform.position.x - range * root.localScale.x, sliderArea.transform.position.x + range * root.localScale.x);
 			thumb.position = new Vector3(newX, thumb.position.y, thumb.position.z);
@@ -33,6 +33,10 @@ public class Slider : MonoBehaviour {
 		if (text != null) {
 			text.text = originalText + (int) Mathf.Round(GetValue () * 10f) / 10f;
 		}
+	}
+
+	public void SetValue (float newValue) {
+		this.value = (newValue - minVal) / (maxVal - minVal);
 	}
 
 	public float GetValue () {

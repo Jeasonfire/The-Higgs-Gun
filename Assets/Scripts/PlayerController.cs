@@ -24,10 +24,34 @@ public class PlayerController : MonoBehaviour {
 	private float firingCooldown;
 	private string originalEquipText;
 
+	public GameObject pauseMenu;
+	private bool paused = false;
+
 	void Start () {
 		rotation.x = bodyTrans.localEulerAngles.y;
 		rotation.y = bodyTrans.localEulerAngles.x;
-		originalEquipText = equipText.text;
+		if (equipText != null) {
+			originalEquipText = equipText.text;
+		}
+	}
+
+	public bool GetPaused () {
+		return this.paused;
+	}
+
+	public void SetPaused (bool newPaused) {
+		this.paused = newPaused;
+		if (this.paused) {
+			headTrans.localEulerAngles = new Vector3 (-6, 0, 0);
+			bodyTrans.localEulerAngles = new Vector3 (0, 0, 0);
+			Vector3 newPos = character.gameObject.transform.localPosition;
+			newPos.y += 100;
+			character.gameObject.transform.localPosition = newPos;
+		} else {
+			Vector3 newPos = character.gameObject.transform.localPosition;
+			newPos.y -= 100;
+			character.gameObject.transform.localPosition = newPos;
+		}
 	}
 	
 	void OnTriggerEnter (Collider other) {
@@ -70,6 +94,13 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update () {
+		if (paused) {
+			pauseMenu.SetActive (true);
+			return;
+		} else {
+			pauseMenu.SetActive (false);
+		}
+
 		// Movement
 		Vector3 move = new Vector3 ();
 		move.x = Input.GetAxis ("Horizontal");
@@ -105,7 +136,6 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButton ("Flashlight") && Time.realtimeSinceStartup - flashlightToggled > 0.2) {
 			flashlightOn = !flashlightOn;
 			spotlight.SetActive(flashlightOn);
-			Debug.Log ("Flashlight toggle! Flashlight status: " + spotlight.activeSelf);
 			flashlightToggled = Time.realtimeSinceStartup;
 		}
 
@@ -127,37 +157,36 @@ public class PlayerController : MonoBehaviour {
 		}
 		if (Input.GetButton("Shoot") && CanShoot ()) {
 			if (currentAmmo == YELLOW && canShootYellow) {
-				Debug.Log("Firing yellow!");
 				Shoot (yellowAmmo);
 			}
 			if (currentAmmo == GREEN && canShootGreen) {
-				Debug.Log("Firing green!");
 				Shoot (greenAmmo);
 			}
 			if (currentAmmo == BLUE && canShootBlue) {
-				Debug.Log("Firing blue!");
 				Shoot (blueAmmo);
 			}
 			ResetCooldown ();
 		}
 
 		// Update equip text
-		switch (currentAmmo) {
-		default:
-			equipText.text = originalEquipText + "Off";
-			break;
-		case NO_AMMO:
-			equipText.text = originalEquipText + "No ammo";
-			break;
-		case YELLOW:
-			equipText.text = originalEquipText + "Yellow";
-			break;
-		case GREEN:
-			equipText.text = originalEquipText + "Green";
-			break;
-		case BLUE:
-			equipText.text = originalEquipText + "Blue";
-			break;
+		if (equipText != null) {
+			switch (currentAmmo) {
+			default:
+				equipText.text = originalEquipText + "Off";
+				break;
+			case NO_AMMO:
+				equipText.text = originalEquipText + "No ammo";
+				break;
+			case YELLOW:
+				equipText.text = originalEquipText + "Yellow";
+				break;
+			case GREEN:
+				equipText.text = originalEquipText + "Green";
+				break;
+			case BLUE:
+				equipText.text = originalEquipText + "Blue";
+				break;
+			}
 		}
 	}
 

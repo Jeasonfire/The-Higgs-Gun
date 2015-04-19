@@ -2451,7 +2451,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11430908, guid: 49f10d10ba52ca0418d7ca505d2c66d3, type: 2}
       propertyPath: levelToChangeTo
-      value: MainMenu
+      value: Ending
       objectReference: {fileID: 0}
     - target: {fileID: 482642, guid: 49f10d10ba52ca0418d7ca505d2c66d3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3494,6 +3494,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 11487398, guid: eaa28f11fc96bcc43b1b7e9732fe11ff, type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1560497125}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eaa28f11fc96bcc43b1b7e9732fe11ff, type: 2}
   m_IsPrefabParent: 0
@@ -6026,6 +6030,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8aece60639da2c14fb0969dd66f18fd5, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1560497125 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11429060, guid: 8aece60639da2c14fb0969dd66f18fd5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1560497124}
+  m_Script: {fileID: 11500000, guid: 170e1aa5e7b02d540ae88e35f137a17b, type: 3}
 --- !u!4 &1577786021 stripped
 Transform:
   m_PrefabParentObject: {fileID: 464192, guid: be353dc2f6fe17a4c8349492a9df5e61, type: 2}

@@ -10,10 +10,6 @@ public class MainMenuController : MonoBehaviour {
 	public Collider xAxisButton;
 	public Collider yAxisButton;
 
-	public Slider fovSlider;
-	public Slider xAxisSlider;
-	public Slider yAxisSlider;
-
 	public float cameraRotationSpeed, errorMargin;
 	public Transform spotlight;
 	public Camera mainCam;
@@ -26,6 +22,7 @@ public class MainMenuController : MonoBehaviour {
 	void Start () {
 		mainCamRot = mainCam.transform.localEulerAngles + new Vector3(0, 360, 0);
 		optionsCamRot = mainCam.transform.localEulerAngles + new Vector3(0, 180, 0);
+		Cursor.lockState = CursorLockMode.None;
 	}
 
 	void Play () {
@@ -91,9 +88,6 @@ public class MainMenuController : MonoBehaviour {
 				Debug.Log ("Fov!");
 				spotlight.gameObject.SetActive(true);
 			}
-
-			GameController.fov = fovSlider.GetValue ();
-
 			spotlight.LookAt (fovButton.transform);
 			currentButton = BACK;
 		} else if (xAxisButton.Raycast (mouseRay, out hit, 100f)) {
@@ -101,9 +95,6 @@ public class MainMenuController : MonoBehaviour {
 				Debug.Log ("X-Axis!");
 				spotlight.gameObject.SetActive(true);
 			}
-			
-			GameController.mouseSensitivity.x = xAxisSlider.GetValue ();
-
 			spotlight.LookAt (xAxisButton.transform);
 			currentButton = XAXIS;
 		} else if (yAxisButton.Raycast (mouseRay, out hit, 100f)) {
@@ -111,9 +102,6 @@ public class MainMenuController : MonoBehaviour {
 				Debug.Log ("Y-Axis!");
 				spotlight.gameObject.SetActive(true);
 			}
-			
-			GameController.mouseSensitivity.y = yAxisSlider.GetValue ();
-
 			spotlight.LookAt (yAxisButton.transform);
 			currentButton = YAXIS;
 		} else {
