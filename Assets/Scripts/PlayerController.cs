@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour {
 	public float jumpForce;
 	
 	public Transform headTrans, bodyTrans;
+	public GameObject spotlight;
+	private bool flashlightOn = false;
+	private float flashlightToggled = 0;
 	private Vector2 rotation;
 
 	public const int NO_AMMO = 0, YELLOW = 1, GREEN = 2, BLUE = 3;
@@ -97,6 +100,14 @@ public class PlayerController : MonoBehaviour {
 		rotation.y = Mathf.Clamp (rotation.y, -90, 90);
 		bodyTrans.localEulerAngles = new Vector3 (bodyTrans.localEulerAngles.x, rotation.x, bodyTrans.localEulerAngles.z);
 		headTrans.localEulerAngles = new Vector3 (rotation.y, headTrans.localEulerAngles.y, headTrans.localEulerAngles.z);
+
+		// Flashlight
+		if (Input.GetButton ("Flashlight") && Time.realtimeSinceStartup - flashlightToggled > 0.2) {
+			flashlightOn = !flashlightOn;
+			spotlight.SetActive(flashlightOn);
+			Debug.Log ("Flashlight toggle! Flashlight status: " + spotlight.activeSelf);
+			flashlightToggled = Time.realtimeSinceStartup;
+		}
 
 		// Scroll through ammo
 		if (canShootYellow || canShootGreen || canShootBlue) {
