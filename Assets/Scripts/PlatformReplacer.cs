@@ -4,6 +4,17 @@ using System.Collections;
 public class PlatformReplacer : MonoBehaviour {
 
 	public GameObject replacer;
+	public AudioSource effect;
+
+	void Start () {
+		if (GameController.IsLoading ()) {
+			return;
+		}
+
+		if (!effect.isPlaying) {
+			effect.Play ();
+		}
+	}
 
 	void OnTriggerEnter (Collider other) {
 		if (other.gameObject.tag.Equals(gameObject.tag)) {
@@ -20,7 +31,6 @@ public class PlatformReplacer : MonoBehaviour {
 					platform.GetComponent<Rigidbody> ().useGravity = true;
 				}
 			}
-			
 			Destroy(gameObject);
 		}
 	}

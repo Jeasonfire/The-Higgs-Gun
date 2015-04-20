@@ -14,18 +14,23 @@ public class PlayerController : MonoBehaviour {
 	private float flashlightToggled = 0;
 	private Vector2 rotation;
 
+	public Animator gunAnim;
+	public Transform gunTransform;
+
 	public const int NO_AMMO = 0, YELLOW = 1, GREEN = 2, BLUE = 3;
 	public float cooldown;
 	public float shootForce;
 	public GameObject yellowAmmo, greenAmmo, blueAmmo;
 	public GUIText equipText;
 	private int currentAmmo = NO_AMMO;
-	private bool canShootYellow = false, canShootGreen = false, canShootBlue = false;
+	public bool canShootYellow = false, canShootGreen = false, canShootBlue = false;
 	private float firingCooldown;
 	private string originalEquipText;
 
 	public GameObject pauseMenu;
 	private bool paused = false;
+
+	public AudioSource jumpSnd, pickupSnd, shootSnd;
 
 	void Start () {
 		rotation.x = bodyTrans.localEulerAngles.y;
@@ -75,14 +80,24 @@ public class PlayerController : MonoBehaviour {
 					currentAmmo = BLUE;
 				}
 			}
+			if (!pickupSnd.isPlaying) {
+				pickupSnd.Play ();
+			}
 			Destroy (other.gameObject);
 		}
 	}
 	
 	void Shoot(GameObject ammo) {
-		GameObject bullet = (GameObject) Instantiate (ammo, headTrans.position, headTrans.rotation);
+		GameObject bullet = (GameObject) Instantiate (ammo, gunTransform.position, headTrans.rotation);
 		bullet.GetComponent<Rigidbody> ().AddForce (bullet.transform.forward * shootForce);
 		Physics.IgnoreCollision (GetComponent<Collider> (), bullet.GetComponent<Collider> ());
+
+		if (gunAnim != null) {
+			gunAnim.Play("Shoot");
+		}
+		if (!shootSnd.isPlaying) {
+			shootSnd.Play ();
+		}
 	}
 	
 	void ResetCooldown () {
@@ -113,6 +128,9 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			if (Input.GetButton ("Jump")) {
 				move.y = jumpForce;
+				if (!jumpSnd.isPlaying) {
+					jumpSnd.Play ();
+				}
 			} else {
 				move.y = 0;
 			}

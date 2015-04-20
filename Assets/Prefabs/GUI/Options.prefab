@@ -423,6 +423,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 461304}
   - 114: {fileID: 11449654}
+  - 114: {fileID: 11432912}
   m_Layer: 0
   m_Name: Options
   m_TagString: Untagged
@@ -1450,8 +1451,8 @@ Transform:
   - {fileID: 497352}
   - {fileID: 493598}
   - {fileID: 487960}
-  - {fileID: 492928}
   - {fileID: 478364}
+  - {fileID: 492928}
   m_Father: {fileID: 461304}
   m_RootOrder: 2
 --- !u!4 &409076
@@ -2113,7 +2114,7 @@ Transform:
   - {fileID: 480358}
   - {fileID: 409076}
   m_Father: {fileID: 408734}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!4 &479170
 Transform:
   m_ObjectHideFlags: 1
@@ -2283,7 +2284,7 @@ Transform:
   - {fileID: 429306}
   - {fileID: 423862}
   m_Father: {fileID: 408734}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!4 &493598
 Transform:
   m_ObjectHideFlags: 1
@@ -5055,6 +5056,22 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11432912
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 128460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e038c8dabb005428fe50063ee42fdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fovSlider: {fileID: 11460712}
+  xAxisSlider: {fileID: 11446050}
+  yAxisSlider: {fileID: 11468818}
+  musicSlider: {fileID: 11459664}
+  soundSlider: {fileID: 11464812}
 --- !u!114 &11446050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5089,6 +5106,8 @@ MonoBehaviour:
   fovSlider: {fileID: 11460712}
   xAxisSlider: {fileID: 11446050}
   yAxisSlider: {fileID: 11468818}
+  musicSlider: {fileID: 0}
+  soundSlider: {fileID: 0}
 --- !u!114 &11459664
 MonoBehaviour:
   m_ObjectHideFlags: 1

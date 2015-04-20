@@ -9,12 +9,14 @@ public class MainMenuController : MonoBehaviour {
 	public Collider fovButton;
 	public Collider xAxisButton;
 	public Collider yAxisButton;
+	public Collider musicButton;
+	public Collider soundButton;
 
 	public float cameraRotationSpeed, errorMargin;
 	public Transform spotlight;
 	public Camera mainCam;
 
-	private const int NOTHING = 0, PLAY = 1, OPTIONS = 2, BACK = 3, FOV = 4, XAXIS = 5, YAXIS = 6;
+	private const int NOTHING = 0, PLAY = 1, OPTIONS = 2, BACK = 3, FOV = 4, XAXIS = 5, YAXIS = 6, MUSIC = 7, SOUND = 8;
 	private int currentButton = NOTHING;
 	private Vector3 mainCamRot, optionsCamRot;
 	private Vector3 targetCameraRotation;
@@ -23,6 +25,7 @@ public class MainMenuController : MonoBehaviour {
 		mainCamRot = mainCam.transform.localEulerAngles + new Vector3(0, 360, 0);
 		optionsCamRot = mainCam.transform.localEulerAngles + new Vector3(0, 180, 0);
 		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 	}
 
 	void Play () {
@@ -52,7 +55,6 @@ public class MainMenuController : MonoBehaviour {
 		RaycastHit hit;
 		if (playButton.Raycast (mouseRay, out hit, 100f)) {
 			if (currentButton != PLAY) {
-				Debug.Log ("Play!");
 				spotlight.gameObject.SetActive(true);
 			}
 			spotlight.LookAt (playButton.transform);
@@ -63,7 +65,6 @@ public class MainMenuController : MonoBehaviour {
 			}
 		} else if (optionsButton.Raycast (mouseRay, out hit, 100f)) {
 			if (currentButton != OPTIONS) {
-				Debug.Log ("Options!");
 				spotlight.gameObject.SetActive(true);
 			}
 			spotlight.LookAt (optionsButton.transform);
@@ -74,7 +75,6 @@ public class MainMenuController : MonoBehaviour {
 			}
 		} else if (backButton.Raycast (mouseRay, out hit, 100f)) {
 			if (currentButton != BACK) {
-				Debug.Log ("Back!");
 				spotlight.gameObject.SetActive(true);
 			}
 			spotlight.LookAt (backButton.transform);
@@ -85,25 +85,34 @@ public class MainMenuController : MonoBehaviour {
 			}
 		} else if (fovButton.Raycast (mouseRay, out hit, 100f)) {
 			if (currentButton != FOV) {
-				Debug.Log ("Fov!");
 				spotlight.gameObject.SetActive(true);
 			}
 			spotlight.LookAt (fovButton.transform);
 			currentButton = BACK;
 		} else if (xAxisButton.Raycast (mouseRay, out hit, 100f)) {
 			if (currentButton != XAXIS) {
-				Debug.Log ("X-Axis!");
 				spotlight.gameObject.SetActive(true);
 			}
 			spotlight.LookAt (xAxisButton.transform);
 			currentButton = XAXIS;
 		} else if (yAxisButton.Raycast (mouseRay, out hit, 100f)) {
 			if (currentButton != YAXIS) {
-				Debug.Log ("Y-Axis!");
 				spotlight.gameObject.SetActive(true);
 			}
 			spotlight.LookAt (yAxisButton.transform);
 			currentButton = YAXIS;
+		} else if (musicButton.Raycast (mouseRay, out hit, 100f)) {
+			if (currentButton != MUSIC) {
+				spotlight.gameObject.SetActive(true);
+			}
+			spotlight.LookAt (musicButton.transform);
+			currentButton = MUSIC;
+		} else if (soundButton.Raycast (mouseRay, out hit, 100f)) {
+			if (currentButton != SOUND) {
+				spotlight.gameObject.SetActive(true);
+			}
+			spotlight.LookAt (soundButton.transform);
+			currentButton = SOUND;
 		} else {
 			if (currentButton != NOTHING) {
 				spotlight.gameObject.SetActive(false);
