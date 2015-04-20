@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 408986}
   - 82: {fileID: 8247662}
+  - 114: {fileID: 11468088}
   m_Layer: 0
   m_Name: Transform
   m_TagString: Untagged
@@ -185,6 +186,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   replacer: {fileID: 194712, guid: d3967017d7a0db24fb4a2252eab1178b, type: 2}
   effect: {fileID: 8247662}
+--- !u!114 &11468088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3fb59b4fea0ebd4ba57dca64286c81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

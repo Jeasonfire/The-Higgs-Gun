@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 447542}
   - 82: {fileID: 8206540}
+  - 114: {fileID: 11415792}
   m_Layer: 0
   m_Name: Transform
   m_TagString: Untagged
@@ -172,6 +173,17 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &11415792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3fb59b4fea0ebd4ba57dca64286c81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11463796
 MonoBehaviour:
   m_ObjectHideFlags: 1

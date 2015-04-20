@@ -10,11 +10,14 @@ public class GameController : MonoBehaviour {
 	private static float loading = 1;
 	public PlayerController player;
 	private float pauseTime = 0;
-	private static int lastLevel = -1;
 
 	void Start () {
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
+	}
+
+	public static void SetLoading (int seconds) {
+		loading = seconds;
 	}
 
 	public static bool IsLoading () {
@@ -24,10 +27,6 @@ public class GameController : MonoBehaviour {
 	void Update () {
 		if (loading > 0) {
 			loading -= Time.deltaTime;
-		}
-		if (Application.loadedLevel != lastLevel) {
-			loading = 5;
-			lastLevel = Application.loadedLevel;
 		}
 
 		if (Camera.main.fieldOfView != fov && !player.GetPaused ()) {

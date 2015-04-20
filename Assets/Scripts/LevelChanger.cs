@@ -7,6 +7,7 @@ public class LevelChanger : MonoBehaviour {
 
 	void OnTriggerEnter (Collider other) {
 		if (other.gameObject.tag.Equals ("Player")) {
+			GameController.SetLoading (2);
 			Application.LoadLevel(levelToChangeTo);
 		}
 	}
