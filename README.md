@@ -5,6 +5,7 @@ Table of Contents
 -----------------
 * [General](#general)
 * [Mechanics](#mechanics)
+* [Building](#building)
 * [Licenses](#licenses)
 
 General
@@ -14,6 +15,12 @@ The Higgs Gun is my ([Jeasonfire](https://jeasonfire.github.io/)) contribution t
 Mechanics
 ---------
 The player has a weapon (_an unconventional weapon_, you could say) called the "Higgs' Gun", a gun that fires particles that change the state of special materials, like changing a transparent non-physical object into a solid, and vice versa. (_the higgs' gun gives things mass_, you could say)
+
+Building
+--------
+1. Get Unity from [unity3d.com](https://unity3d.com).
+2. In Unity, open the directory this repo's contents are found in.
+3. In Unity, File -> Build Settings... -> Build (or just File -> Build & Run)
 
 Licenses
 --------
